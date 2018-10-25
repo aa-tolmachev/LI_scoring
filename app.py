@@ -10,7 +10,8 @@ import traceback
 from xml.etree import ElementTree as ET
 
 
-#
+from Moduls import main
+
 
 application = Flask(__name__)  # Change assignment here
 
@@ -26,27 +27,28 @@ def score_v1():
                 'data' :{}
                }
     try:
-        #todo - clean # when ready to prod
         #getData = str(request.get_data())
-        #json_params = json.loads(getData)
+        #json_params = json.loads(getData) 
         
-        #у димы запросить какой формат вызова меня
-        #беру юзер айди и направляю запрос на скоринг
-        user_id = 14
+        json_params = {'user_id':16,
+                      'client_id':1,
+                      'loan_amount':3000,
+                      'loan_period':14,
+                      'payment_frequency':1,
+                      'payment_amount':3550,
+                      'app_rate':0.022}
 
-        url = 'http://test.lendinvest.ru/service/score/'+str(user_id)
-        r = requests.get(url)
-        root = ET.fromstring(r.content)
+        #json_params = {'user_id':16,
+        #                'client_id':1,
+        #                'application_id':
+        #}
 
-        #todo это пример, переделать под реальный запрос
-        #пробегаемся по xml к примеру
-        for child in root[0][0][0]:
-            #print (child.tag ,child.attrib, child.text)
-            if child.tag == 'PersonReq':
-                last_name = child.find('name1').text
-                response['data']['last_name'] = last_name
-                #for child_2 in child:
-                    #print (child_2.tag ,child_2.attrib, child_2.text)
+        
+
+        result = main.main(json_params)
+        response['data'] = result
+
+
         
         
     except:
