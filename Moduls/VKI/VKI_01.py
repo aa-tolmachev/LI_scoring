@@ -4,8 +4,8 @@ import json
 import traceback
 from xml.etree import ElementTree as ET
 
-import mysql.connector
-from pandas import DataFrame
+import mysql.connector as sql
+import pandas as pd
 
 import Tech.mysql_connect as mysql_con
 
