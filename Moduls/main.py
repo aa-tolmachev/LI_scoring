@@ -1,5 +1,5 @@
 import Moduls.NBKI_PDL as NP
-
+import Moduls.VKI as VKI
 
 def resp():
     response = {'status' : 'ok',
@@ -18,8 +18,21 @@ def resp():
                         'final_check':{}
                         }
                }
-
     return response
+"""
+    {
+    application_id: <int>,
+    decision: <string:approve|reject>,
+    // change: {}, // объект пуст если апрувим или отклоняем без изменения заявки
+    change: {
+    sum: <int|null>, // значение проставляются только в том свойстве, которое надо изменить
+    period: <int|null>, // пример: поменять только период - period: 10, sum: null, product_id: null
+    product_id: <int|null>, // если будут указаны все поля, то у заявки сначала будет изменен продукт, а потом остальные поля
+    }
+}
+"""
+
+
 
 
 def app_data(json_params = None):
@@ -39,6 +52,9 @@ def main(json_params = None):
     response['data']['app_data'] = app_data(json_params)
 
     #здесь делаем внутренние проверки
+    vki_result = VKI.VKI_MAIN.main(json_params)
+    response['data']['vki_check'] = vki_result
+
 
 
     #если внутренние проверки ок, то получение данных нбки и оценка дефолта в ней должна быть проверка о возможности выдачи

@@ -32,16 +32,14 @@ def score_v1():
         
         json_params = {'user_id':16,
                       'client_id':1,
+                      'application_id':40,
                       'loan_amount':3000,
                       'loan_period':14,
                       'payment_frequency':1,
                       'payment_amount':3550,
                       'app_rate':0.022}
 
-        #json_params = {'user_id':16,
-        #                'client_id':1,
-        #                'application_id':
-        #}
+
 
         
 
