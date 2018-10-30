@@ -27,7 +27,7 @@ def score_v1():
                 'data' :{}
                }
     try:
-        getData = str(request.get_data())
+        getData = request.get_data()
         json_params = json.loads(getData) 
         
         #json_params = {'user_id':16,
