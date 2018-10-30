@@ -10,7 +10,7 @@ import pandas as pd
 import Tech.mysql_connect as mysql_con
 
 
-#1 есть активный кредит
+#8. своевременное погашение, без просрочки в течение 6-х месяцев - улучшение условий согласно бизнес плану
 
 def main(json_params = None):
         
@@ -34,9 +34,10 @@ def main(json_params = None):
                                       database=mysql_settings['database'])
         db_cursor = db_connection.cursor()
         
-        sql_script = (' ').join(['select case when count(found_rows()) > 0 then 1 else 0 end as rule_check',
+        sql_script = (' ').join(['select amount',
                                 'from cc_contracts',
-                                "where client_id = {0} and status in ('CREATED' , 'ACTIVE', 'PROCESS')".format(client_id)
+                                'where client_id = {0}'.format(client_id),
+                                "and id = (select max(id) from cc_contracts where client_id = 1)"
                                 ])
 
         db_cursor.execute(sql_script)
@@ -47,7 +48,10 @@ def main(json_params = None):
 
         db_connection.close()
 
-        vki_check = df['rule_check'][0]
+        if df.shape[0] > 0:
+            vki_check = df['amount'][0]
+        else:
+            vki_check = 0
 
 
         return vki_check

@@ -27,17 +27,17 @@ def score_v1():
                 'data' :{}
                }
     try:
-        #getData = str(request.get_data())
-        #json_params = json.loads(getData) 
+        getData = str(request.get_data())
+        json_params = json.loads(getData) 
         
-        json_params = {'user_id':16,
-                      'client_id':1,
-                      'application_id':40,
-                      'loan_amount':3000,
-                      'loan_period':14,
-                      'payment_frequency':1,
-                      'payment_amount':3550,
-                      'app_rate':0.022}
+        #json_params = {'user_id':16,
+        #              'client_id':1,
+        #              'application_id':40,
+        #              'loan_amount':3000,
+        #              'loan_period':14,
+        #              'payment_frequency':1,
+        #              'payment_amount':3550,
+        #              'app_rate':0.022}
 
 
 
@@ -46,6 +46,9 @@ def score_v1():
         result = main.main(json_params)
         response['data'] = result
 
+        #ответ согласно ответу Димы
+        response = response['data']['data']['for_kk']
+
 
         
         
@@ -53,6 +56,7 @@ def score_v1():
         response['status'] = 'error'
         response['code'] = 501
         
+    
     return str(response)
         
 

@@ -10,7 +10,8 @@ import pandas as pd
 import Tech.mysql_connect as mysql_con
 
 
-#1 есть активный кредит
+#7. досрочное гашение в течение 2-х месяцев - от 3 кредитов, досрочных дней более 7 - уменьшение лимита в 2 раза
+
 
 def main(json_params = None):
         
@@ -34,9 +35,10 @@ def main(json_params = None):
                                       database=mysql_settings['database'])
         db_cursor = db_connection.cursor()
         
-        sql_script = (' ').join(['select case when count(found_rows()) > 0 then 1 else 0 end as rule_check',
+        sql_script = (' ').join(['select case when count(found_rows()) > 3 then 1 else 0 end as rule_check',
                                 'from cc_contracts',
-                                "where client_id = {0} and status in ('CREATED' , 'ACTIVE', 'PROCESS')".format(client_id)
+                                'where client_id = {0} and  DATEDIFF(repayment_fact_date, repayment_plan_date) <= -7 and'.format(client_id),
+                                "datediff(now(),repayment_fact_date) <= 60"
                                 ])
 
         db_cursor.execute(sql_script)

@@ -10,7 +10,7 @@ import pandas as pd
 import Tech.mysql_connect as mysql_con
 
 
-#1 есть активный кредит
+#5. ранее был кредит в просрочке - более 14 дней, последний кредит в течение 2-х месяцев - отказ
 
 def main(json_params = None):
         
@@ -36,7 +36,8 @@ def main(json_params = None):
         
         sql_script = (' ').join(['select case when count(found_rows()) > 0 then 1 else 0 end as rule_check',
                                 'from cc_contracts',
-                                "where client_id = {0} and status in ('CREATED' , 'ACTIVE', 'PROCESS')".format(client_id)
+                                'where client_id = {0} and  DATEDIFF(repayment_fact_date, repayment_plan_date) > 14 and'.format(client_id),
+                                "datediff(now(),repayment_fact_date) <= 60"
                                 ])
 
         db_cursor.execute(sql_script)
