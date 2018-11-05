@@ -55,8 +55,10 @@ def score_v1():
     except:
         response['status'] = 'error'
         response['code'] = 501
-        
-    #response = json.dumps(response)
+
+
+    response = json.dumps(response)
+    print(response)
     return str(response)
         
 
