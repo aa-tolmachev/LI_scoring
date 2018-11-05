@@ -56,7 +56,7 @@ def score_v1():
         response['status'] = 'error'
         response['code'] = 501
         
-    response = json.dumps(response)
+    #response = json.dumps(response)
     return str(response)
         
 
