@@ -54,4 +54,5 @@ def main(json_params = None):
             vki_check = 0
 
 
-        return vki_check
+
+        return float(vki_check)

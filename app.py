@@ -7,6 +7,7 @@ import json
 import traceback
 
 
+
 from xml.etree import ElementTree as ET
 
 
@@ -45,6 +46,8 @@ def score_v1():
 
         result = main.main(json_params)
         response['data'] = result
+        #принтим на всякий случай
+        print(response)
 
         #ответ согласно ответу Димы
         response = response['data']['data']['for_kk']
@@ -53,6 +56,7 @@ def score_v1():
         
         
     except:
+        traceback.print_exc()
         response['status'] = 'error'
         response['code'] = 501
 
