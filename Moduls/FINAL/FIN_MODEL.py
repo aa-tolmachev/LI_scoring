@@ -31,12 +31,18 @@ def main(response = None ):
     bad_amount = response['data']['vki_check']['bad_amount']
     bad_rate = response['data']['vki_check']['bad_rate']
     last_amount = response['data']['vki_check']['last_amount']
-
-
-
+    is_grey = response['data']['nbki_pdl_score_check']['grey']
+    pd = response['data']['nbki_pdl_score_check']['pd']
     
+
+
     if cnt_prev == 0:
-        fin_amount = 1000
+        if (pd >= 0.3 and pd <= 0.4) or is_grey ==1:
+            fin_amount = 1000
+        elif pd >= 0.2 and pd < 0.3:
+            fin_amount = 2000
+        else:
+            fin_amount = 3000
     elif cnt_prev == 1:
         fin_amount = 3000
     elif cnt_prev == 2:
