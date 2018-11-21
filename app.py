@@ -70,6 +70,6 @@ def score_v1():
 if __name__ == "__main__":
     #heroku
     port = int(os.getenv('PORT', 5000))
-    application.run(debug=False, port=port, host='0.0.0.0')
+    application.run(debug=False, port=port, host='0.0.0.0' , threaded=True)
     #local
     #application.run()
