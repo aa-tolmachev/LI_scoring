@@ -96,6 +96,7 @@ def main(json_params = None):
         print_step(message='step vki reject',json_params=json_params)
         response['reason'] = 'vki check'
         response['data']['for_kk'] = FIN.FIN_KK_RESPONSE.main(response)
+
     else:
 
 
@@ -137,4 +138,6 @@ def main(json_params = None):
                 response['reason'] = 'ALL GOOD'
                 response['data']['for_kk'] = FIN.FIN_KK_RESPONSE.main(response)
     
+
+    s = FIN.FIN_DB_INSERT.main(response)
     return response
