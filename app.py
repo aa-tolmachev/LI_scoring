@@ -19,7 +19,9 @@ application = Flask(__name__)  # Change assignment here
 #test
 @application.route("/")  
 def hello():
-    return "Hello World!"
+    password = os.getenv('mysql_password')
+    resp = "Hello World!" + password[:5]
+    return resp
 
 @application.route('/score/v1', methods=['GET', 'POST'])  
 def score_v1():
