@@ -14,6 +14,7 @@ import Moduls.VKI.VKI_05 as VKI_05
 import Moduls.VKI.VKI_06 as VKI_06
 import Moduls.VKI.VKI_07 as VKI_07
 import Moduls.VKI.VKI_08 as VKI_08
+import Moduls.VKI.VKI_09 as VKI_09
 
 
 def main(json_params = None):
@@ -51,6 +52,10 @@ def main(json_params = None):
     #VKI_08
     vki_08_res = VKI_08.main(json_params)
     vki_result['vki_08'] = vki_08_res
+
+    #VKI_09 2 заявки отказные зачвки в течение недели - отказ
+    vki_09_res = VKI_09.main(json_params)
+    vki_result['vki_09'] = vki_09_res
 
     return vki_result
 

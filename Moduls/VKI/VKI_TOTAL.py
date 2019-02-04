@@ -31,7 +31,7 @@ def main(response = None , json_params=None):
     cnt_prev = result_cnt_prev
 
     #отказ
-    result_info = vki_result['vki_01'] + vki_result['vki_05'] 
+    result_info = vki_result['vki_01'] + vki_result['vki_05']  + vki_result['vki_09'] 
     if result_info == 0:
         result = 'approve'
 
