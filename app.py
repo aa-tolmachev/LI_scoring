@@ -33,6 +33,8 @@ def score_v1():
         getData = request.get_data()
         json_params = json.loads(getData) 
         
+        print(json_params)
+
         #json_params = {'user_id':16,
         #              'client_id':1,
         #              'application_id':40,
