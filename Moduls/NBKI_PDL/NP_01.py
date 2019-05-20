@@ -21,6 +21,7 @@ def main(json_params = None):
         nbki_pdl_score_check_result = {}
 
         url = 'http://test.lendinvest.ru/service/score/{0}?inq_loan_amount={1}&inq_loan_period={2}&payment_frequency={3}&payment_amount={4}&force=true'.format(user_id,loan_amount,loan_period,payment_frequency,payment_amount)
+        print('NP 01 - {0}'.format(url))
         r = requests.get(url)
         root = ET.fromstring(r.content)
 
