@@ -33,6 +33,10 @@ def score_v1():
         getData = request.get_data()
         json_params = json.loads(getData) 
         
+        #преобразуем app_rate в float
+        app_rate = json_params['app_rate']
+        json_params['app_rate'] = float(app_rate)
+
         print(json_params)
 
         #json_params = {'user_id':16,
