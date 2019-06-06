@@ -93,12 +93,13 @@ def main(response = None ):
     sql_script = (' ').join(['insert into scoring_main (application_id , approved_amount , approved_frequency , approved_period , approved_product_id , approved_rate,client_id,cnt_prev,code,reason,`result`,status,user_id,app_data_loan_amount,app_data_loan_period,app_data_payment_frequency,app_data_payment_amount,app_data_app_rate,app_data_product_id,vki_check_bad_amount,vki_check_bad_rate,vki_check_last_amount,vki_check_vki_01,vki_check_vki_02,vki_check_vki_03,vki_check_vki_04,vki_check_vki_05,vki_check_vki_06,vki_check_vki_07,vki_check_vki_08,nbki_score,nbki_exclusionCode,nbki_grey,nbki_pd,nbki_pd_check_error,model_fin_amount,model_fin_rate )',
                                 "VALUES {0}".format(mysql_scoring_result)
                                 ])
-
+    print(sql_script)
 
     try:
        db_cursor.execute(sql_script)
        db_connection.commit()
-    except:
+    except Exception:
+       print('FIN_DB_INSERT' , traceback.format_exc())
        db_connection.rollback()
     
 
