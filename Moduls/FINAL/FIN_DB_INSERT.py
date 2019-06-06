@@ -28,6 +28,14 @@ def make_value(response=None, key1 = None, key2 = None, key3 = None, key4 = None
     if  type(value) is dict:
         value = value_s
     
+
+    #work with missing values
+    if value is None:
+        if value_type == 'str':
+            value = 'missing'
+        else:
+            value = 9999
+
     
     return value
 
