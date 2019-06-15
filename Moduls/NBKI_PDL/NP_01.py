@@ -52,7 +52,7 @@ def main(json_params = None):
         if root.find('productScore') is not None:
 
             for score_info in root.findall('productScore'):
-                if score_info.find('scoreID').text == 'PDL':
+                if score_info.find('scoreID').text == 'IL_001_001':
                     if score_info.find('exclusionCode') is not None:
                         exclusionCode = score_info.find('exclusionCode').text
                     if score_info.find('score') is not None:
