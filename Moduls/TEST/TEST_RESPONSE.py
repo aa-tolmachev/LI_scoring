@@ -27,6 +27,13 @@ def main(json_params = None ,response = None):
 
         response['result'] = 'approve'
 
+        response['application_id'] = 0
+        response['approved_amount'] = 0
+        response['approved_period'] = 0
+        response['approved_product_id'] = 0
+        response['data']['app_data']['product_id'] = 0
+
+
     else:
         is_test_response = 0
 
