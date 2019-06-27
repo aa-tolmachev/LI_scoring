@@ -1,6 +1,7 @@
 import Moduls.NBKI_PDL as NP
 import Moduls.VKI as VKI
 import Moduls.FINAL as FIN
+import Moduls.TEST as TEST
 
 
 
@@ -81,6 +82,16 @@ def main(json_params = None):
     response['user_id'] = json_params['user_id']
     response['application_id'] = json_params['application_id']
     response['client_id'] = json_params['client_id']
+
+
+    #запускаем тесты
+    print_step(message='step test',json_params=json_params)
+    is_test_response , response = TEST.TEST_RESPONSE.main(json_params , response)
+    if is_test_response == 1:
+        response['reason'] = 'test response'
+        response['data']['for_kk'] = FIN.FIN_KK_RESPONSE.main(response)
+        s = FIN.FIN_DB_INSERT.main(response)
+        return response
 
 
     #здесь делаем внутренние проверки
