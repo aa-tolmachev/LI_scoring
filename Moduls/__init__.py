@@ -14,3 +14,5 @@ from Moduls.CLIENT_INFO import *
 from Moduls.VKI import *
 #final
 from Moduls.FINAL import *
+#test
+from Moduls.TEST import *
