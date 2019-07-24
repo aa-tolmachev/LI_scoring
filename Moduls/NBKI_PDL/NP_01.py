@@ -30,20 +30,20 @@ def main(json_params = None):
 
 
         #получаем персональные данные
-        for child in root[0][0][0]:
+        #for child in root[0][0][0]:
             #print (child.tag ,child.attrib, child.text)
-            if child.tag == 'PersonReq':
-                nbki_pdl_score_check_result['last_name'] = child.find('name1').text
-                nbki_pdl_score_check_result['first_name'] = child.find('first').text
-                nbki_pdl_score_check_result['birth_date'] = child.find('birthDt').text
+        #    if child.tag == 'PersonReq':
+        #        nbki_pdl_score_check_result['last_name'] = child.find('name1').text
+        #        nbki_pdl_score_check_result['first_name'] = child.find('first').text
+        #        nbki_pdl_score_check_result['birth_date'] = child.find('birthDt').text
 
 
         #получаем данные по паспартам
-        for child in root[0][1][0]:
-            if child.tag == 'IdReply':
-                nbki_pdl_score_check_result['idType'] = child.find('idType').text
-                nbki_pdl_score_check_result['seriesNumber']  = child.find('seriesNumber').text
-                nbki_pdl_score_check_result['idNum']  = child.find('idNum').text
+        #for child in root[0][1][0]:
+        #    if child.tag == 'IdReply':
+        #        nbki_pdl_score_check_result['idType'] = child.find('idType').text
+        #        nbki_pdl_score_check_result['seriesNumber']  = child.find('seriesNumber').text
+        #        nbki_pdl_score_check_result['idNum']  = child.find('idNum').text
 
         #смотрим данные по скорингу
         score = 0
@@ -55,6 +55,7 @@ def main(json_params = None):
                 if score_info.find('scoreID').text == 'IL_001_001':
                     if score_info.find('exclusionCode') is not None:
                         exclusionCode = score_info.find('exclusionCode').text
+                        score = -1
                     if score_info.find('score') is not None:
                         score = score_info.find('score').text
 
