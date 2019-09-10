@@ -13,7 +13,7 @@ def mysql_con(is_prod = 1):
         mysql_settings = {'user': 'ext_tolmachev_a',
                         #'password' : os.getenv('mysql_password'),
                         'password' : 'ZWY1MWMxNjc0MzVkN',
-                        'host' : '91.218.231.34',
+                        'host' : '37.143.12.125',
                         'database' : 'lendinvest'
                       }
 
